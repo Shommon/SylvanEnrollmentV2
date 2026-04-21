@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Welcome to Sylvan – Information & Objectives</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scroll-wrap">
+
+<!-- ════════════════════ PAGE 1 ════════════════════ -->
+<div class="pdf-page" id="page1">
+  <img class="bg" src="p1.jpg">
+  <div class="overlay">
+
+    <!-- Student Name -->
+    <input class="f" type="text" id="studentName">
+    <!-- Age -->
+    <input class="f" type="text" id="age">
+
+    <!-- DOB -->
+    <input class="f" type="text" id="dob" placeholder="MM/DD/YYYY">
+    <!-- School -->
+    <input class="f" type="text" id="school">
+    <!-- Grade -->
+    <input class="f" type="text" id="grade">
+
+    <!-- Customer Name -->
+    <input class="f" type="text" id="custName">
+    <!-- Relationship -->
+    <input class="f" type="text" id="custRel">
+
+    <!-- Address Street -->
+    <input class="f" type="text" id="street">
+    <!-- City -->
+    <input class="f" type="text" id="city">
+    <!-- State -->
+    <input class="f" type="text" id="state">
+    <!-- Zip -->
+    <input class="f" type="text" id="zip">
+
+    <!-- Email -->
+    <input class="f" type="email" id="email">
+    <!-- Occupation -->
+    <input class="f" type="text" id="occ">
+
+    <!-- Phone -->
+    <input class="f" type="tel" id="phone">
+    <!-- Phone type radios -->
+    <div class="radio-cluster" id="phoneTypeCluster">
+      <label><input type="radio" name="phoneType" value="mobile"> Mobile</label>
+      <label><input type="radio" name="phoneType" value="work"> Work</label>
+      <label><input type="radio" name="phoneType" value="home"> Home</label>
+    </div>
+    <!-- Alt Phone -->
+    <input class="f" type="tel" id="altPhone">
+    <!-- Alt Phone type radios -->
+    <div class="radio-cluster" id="altPhoneTypeCluster">
+      <label><input type="radio" name="altPhoneType" value="mobile"> Mobile</label>
+      <label><input type="radio" name="altPhoneType" value="work"> Work</label>
+      <label><input type="radio" name="altPhoneType" value="home"> Home</label>
+    </div>
+
+    <!-- Preferred Contact -->
+    <div class="radio-cluster" id="prefContactCluster">
+      <label><input type="checkbox" name="prefContact" value="phone"> Phone</label>
+      <label><input type="checkbox" name="prefContact" value="altphone"> Alt Phone</label>
+      <label><input type="checkbox" name="prefContact" value="email"> Email</label>
+      <label><input type="checkbox" name="prefContact" value="other"> Other</label>
+    </div>
+    <!-- Other text -->
+    <input class="f" type="text" id="prefOther">
+
+    <!-- ── Customer 2 block (shaded) ── -->
+    <!-- Customer Name 2 -->
+    <input class="f" type="text" id="cust2Name">
+    <!-- Relationship 2 -->
+    <input class="f" type="text" id="cust2Rel">
+
+    <!-- Email 2 -->
+    <input class="f" type="email" id="email2">
+    <!-- Occupation 2 -->
+    <input class="f" type="text" id="occ2">
+
+    <!-- Phone 2 -->
+    <input class="f" type="tel" id="phone2">
+    <!-- Phone2 type radios -->
+    <div class="radio-cluster" id="phone2TypeCluster">
+      <label><input type="radio" name="phone2Type" value="mobile"> Mobile</label>
+      <label><input type="radio" name="phone2Type" value="work"> Work</label>
+      <label><input type="radio" name="phone2Type" value="home"> Home</label>
+    </div>
+    <!-- Alt Phone 2 -->
+    <input class="f" type="tel" id="altPhone2">
+    <!-- Alt Phone2 type radios -->
+    <div class="radio-cluster" id="altPhone2TypeCluster">
+      <label><input type="radio" name="altPhone2Type" value="mobile"> Mobile</label>
+      <label><input type="radio" name="altPhone2Type" value="work"> Work</label>
+      <label><input type="radio" name="altPhone2Type" value="home"> Home</label>
+    </div>
+
+    <!-- Preferred Contact 2 -->
+    <div class="radio-cluster" id="prefContact2Cluster">
+      <label><input type="checkbox" name="prefContact2" value="phone"> Phone</label>
+      <label><input type="checkbox" name="prefContact2" value="altphone"> Alt Phone</label>
+      <label><input type="checkbox" name="prefContact2" value="email"> Email</label>
+      <label><input type="checkbox" name="prefContact2" value="other"> Other</label>
+    </div>
+    <input class="f" type="text" id="prefOther2">
+
+    <!-- Siblings line 1 -->
+    <input class="f" type="text" id="siblings1">
+    <!-- Siblings line 2 -->
+    <input class="f" type="text" id="siblings2">
+
+    <!-- Q1 -->
+    <input class="f" type="text" id="q1a">
+    <input class="f" type="text" id="q1b">
+    <input class="f" type="text" id="q1c">
+
+    <!-- Q2 Has anyone attended -->
+    <div class="radio-cluster" id="prevSylvanCluster">
+      <label><input type="radio" name="prevSylvan" value="yes"> Yes</label>
+      <label><input type="radio" name="prevSylvan" value="no"> No</label>
+    </div>
+
+    <!-- Q3 when and where -->
+    <input class="f" type="text" id="q3">
+
+    <!-- Q4 most important -->
+    <input class="f" type="text" id="q4a">
+    <input class="f" type="text" id="q4b">
+
+  </div>
+</div>
+
+<!-- ════════════════════ PAGE 2 ════════════════════ -->
+<div class="pdf-page" id="page2">
+  <img class="bg" src="p2.jpg">
+  <div class="overlay">
+
+    <!-- Q5 level radios -->
+    <div class="radio-cluster" id="levelCluster">
+      <label><input type="radio" name="level" value="below"> Below grade level</label>
+      <label><input type="radio" name="level" value="at"> At grade level</label>
+      <label><input type="radio" name="level" value="slightly"> Slightly above grade level</label>
+      <label><input type="radio" name="level" value="considerably"> Considerably above grade level</label>
+    </div>
+
+    <!-- Q6 improvement checkboxes -->
+    <div class="radio-cluster" id="improvementCluster">
+      <label><input type="checkbox" name="improvement" value="reading"> Reading</label>
+      <label><input type="checkbox" name="improvement" value="math"> Math</label>
+      <label><input type="checkbox" name="improvement" value="study"> Study Skills</label>
+      <label><input type="checkbox" name="improvement" value="writing"> Writing</label>
+      <label><input type="checkbox" name="improvement" value="testprep"> Test Prep</label>
+      <label><input type="checkbox" name="improvement" value="homework"> Homework</label>
+      <label><input type="checkbox" name="improvement" value="other"> Other</label>
+    </div>
+    <input class="f" type="text" id="improvOther">
+
+    <!-- Q7 IEP -->
+    <div class="radio-cluster" id="iepCluster">
+      <label><input type="radio" name="iep" value="yes"> Yes</label>
+      <label><input type="radio" name="iep" value="no"> No</label>
+    </div>
+
+    <!-- Q8 describe -->
+     <textarea class="f" id="q8"></textarea>
+
+    <!-- Q9 support plan -->
+    <div class="radio-cluster" id="supportPlanCluster">
+      <label><input type="radio" name="supportPlan" value="yes"> Yes</label>
+      <label><input type="radio" name="supportPlan" value="no"> No</label>
+    </div>
+
+    <!-- Q10 anything else -->
+    <textarea class="f" id="q10"></textarea>
+
+    <!-- Q11 time frame -->
+    <input class="f" type="text" id="q11a">
+    <input class="f" type="text" id="q11b">
+
+    <!-- Q12 referred by -->
+    <input class="f" type="text" id="q12">
+
+    <!-- Practical Q1: days that don't work -->
+    <div class="radio-cluster" id="daysCluster">
+      <label><input type="checkbox" name="days" value="mon"> Monday</label>
+      <label><input type="checkbox" name="days" value="tue"> Tuesday</label>
+      <label><input type="checkbox" name="days" value="wed"> Wednesday</label>
+      <label><input type="checkbox" name="days" value="thu"> Thursday</label>
+      <label><input type="checkbox" name="days" value="fri"> Friday</label>
+      <label><input type="checkbox" name="days" value="sat"> Saturday</label>
+      <label><input type="checkbox" name="days" value="sun"> Sunday</label>
+    </div>
+
+    <!-- Practical Q2: convenient time -->
+    <div class="radio-cluster" id="convTimeCluster">
+      <label><input type="checkbox" name="convTime" value="morning"> Morning</label>
+      <label><input type="checkbox" name="convTime" value="lunch"> Lunchtime</label>
+      <label><input type="checkbox" name="convTime" value="afternoon"> Afternoon</label>
+      <label><input type="checkbox" name="convTime" value="evening"> Evening</label>
+    </div>
+
+    <!-- Practical Q3: payment -->
+    <div class="radio-cluster" id="paymentCluster">
+      <label><input type="checkbox" name="payment" value="onetime"> One time payment</label>
+      <label><input type="checkbox" name="payment" value="overall"> Overall Cost</label>
+      <label><input type="checkbox" name="payment" value="monthly"> Monthly Cost</label>
+      <label><input type="checkbox" name="payment" value="flexible"> I’d like to know more about flexible payment plans</label>
+    </div>
+
+    <!-- Signature canvas -->
+    <canvas id="sigCanvas"></canvas>
+
+    <!-- Date -->
+    <input class="f" type="text" id="sigDate" placeholder="Date">
+
+  </div>
+</div>
+
+</div><!-- /scroll-wrap -->
+
+<button class="print-btn" onclick="window.print()">🖨 Print / Save PDF</button>
+<button class="dev-btn" id="devModeBtn" onclick="developerMode()">Dev Mode</button>
+
+<script src="script.js"></script>
+<script src="developer.js"></script>
+</body>
+</html>
