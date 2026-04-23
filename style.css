@@ -141,7 +141,7 @@ textarea.f {
 }
 .print-btn:hover { background: #243f7a; }
 
-/* Dev Mode button */
+/* Dev Mode button
 .dev-btn {
   position: fixed;
   bottom: 20px;
@@ -157,7 +157,7 @@ textarea.f {
   cursor: pointer;
   box-shadow: 0 3px 12px rgba(0,0,0,.3);
 }
-.dev-btn:hover { background: #333; }
+.dev-btn:hover { background: #333; } */
 
 /* Dev-mode visual helpers */
 body.dev-mode .f,
