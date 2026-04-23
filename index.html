@@ -225,13 +225,16 @@
 <!-- ════════════════════ PAGE 3 ════════════════════ -->
 <div class="pdf-page" id="page3">
   <img class="bg" src="p3.jpg">
-  <div class="overlay"></div>
+  <div class="overlay">
+     <!-- Signature canvas -->
+     <canvas id="sigCanvas2"></canvas>
+  </div>
 </div>
 
 </div><!-- /scroll-wrap -->
 
 <button class="print-btn" onclick="window.print()">🖨 Print / Save PDF</button>
-<!-- <button class="dev-btn" id="devModeBtn" onclick="developerMode()">Dev Mode</button> -->
+<button class="dev-btn" id="devModeBtn" onclick="developerMode()">Dev Mode</button>
 
 <script src="script.js"></script>
 <script src="developer.js"></script>

@@ -67,7 +67,11 @@ const PAGE2_FIELDS = [
   { id: 'sigDate',              hasWidth: true,  hasHeight: true  },
 ];
 
-const ALL_FIELDS = [...PAGE1_FIELDS, ...PAGE2_FIELDS];
+const PAGE3_FIELDS = [
+  { id: 'sigCanvas2',           hasWidth: true,  hasHeight: true  },
+];
+
+const ALL_FIELDS = [...PAGE1_FIELDS, ...PAGE2_FIELDS, ...PAGE3_FIELDS];
 
 // Track per-element drag handlers so we can remove them on exit
 const dragHandlers = new Map(); // id → { el, handler }
@@ -482,7 +486,7 @@ function generatePositionCSS() {
     let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
     if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
     if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas') rule += `  border-bottom: 1.5px solid #999;`;
+    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
     rule += ' }';
     lines.push(rule);
   }
@@ -494,7 +498,18 @@ function generatePositionCSS() {
     let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
     if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
     if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas') rule += `  border-bottom: 1.5px solid #999;`;
+    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
+    rule += ' }';
+    lines.push(rule);
+  }
+  lines.push('');
+  for (const field of PAGE3_FIELDS) {
+    const d = positionData.get(field.id);
+    if (!d) continue;
+    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
+    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
+    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
+    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
     rule += ' }';
     lines.push(rule);
   }
