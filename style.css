@@ -139,7 +139,7 @@ textarea.f {
 }
 .print-btn:hover { background: #243f7a; }
 
-/* Dev Mode button */
+/* Dev Mode button
 .dev-btn {
   position: fixed;
   bottom: 20px;

@@ -1,7 +1,6 @@
 'use strict';
 
 let devModeActive = false;
-let DEV_BYPASS = false;
 let selectedEl = null;
 let dragState = null, resizeState = null;
 const positionData = new Map(); // id → {left, top, width, height, hasWidth, hasHeight}
@@ -208,10 +207,6 @@ function developerMode() {
 // Login modal
 // ─────────────────────────────────────────────
 function promptCredentials() {
-  if (DEV_BYPASS) {
-    enterDevMode();
-    return;
-  }
   const overlay = document.createElement('div');
   overlay.id = 'dev-login-modal';
   overlay.style.cssText = [
