@@ -1,6 +1,7 @@
 'use strict';
 
 let devModeActive = false;
+let DEV_BYPASS = false;
 let selectedEl = null;
 let dragState = null, resizeState = null;
 const positionData = new Map(); // id → {left, top, width, height, hasWidth, hasHeight}
@@ -37,9 +38,7 @@ const PAGE1_FIELDS = [
   { id: 'prefOther2',           hasWidth: true,  hasHeight: true  },
   { id: 'siblings1',            hasWidth: true,  hasHeight: true  },
   { id: 'siblings2',            hasWidth: true,  hasHeight: true  },
-  { id: 'q1a',                  hasWidth: true,  hasHeight: true  },
-  { id: 'q1b',                  hasWidth: true,  hasHeight: true  },
-  { id: 'q1c',                  hasWidth: true,  hasHeight: true  },
+  { id: 'q1',                  hasWidth: true,  hasHeight: true  },
   { id: 'prevSylvanCluster',    hasWidth: false, hasHeight: false },
   { id: 'q3',                   hasWidth: true,  hasHeight: true  },
   { id: 'q4a',                  hasWidth: true,  hasHeight: true  },
@@ -51,8 +50,8 @@ const PAGE2_FIELDS = [
   { id: 'improvementCluster',   hasWidth: false, hasHeight: false },
   { id: 'improvOther',          hasWidth: true,  hasHeight: true  },
   { id: 'iepCluster',           hasWidth: false, hasHeight: false },
-  { id: 'q8a',                  hasWidth: true,  hasHeight: true  },
-  { id: 'q8b',                  hasWidth: true,  hasHeight: true  },
+  { id: 'q8',                  hasWidth: true,  hasHeight: true  },
+  { id: 'q10',                  hasWidth: true,  hasHeight: true  },
   { id: 'supportPlanCluster',   hasWidth: false, hasHeight: false },
   { id: 'q10a',                 hasWidth: true,  hasHeight: true  },
   { id: 'q10b',                 hasWidth: true,  hasHeight: true  },
@@ -67,15 +66,128 @@ const PAGE2_FIELDS = [
   { id: 'sigDate',              hasWidth: true,  hasHeight: true  },
 ];
 
-const PAGE3_FIELDS = [
+let PAGE3_FIELDS = [
   { id: 'sigCanvas2',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField',             hasWidth: true,  hasHeight: true  },
+  { id: 'newField2',             hasWidth: true,  hasHeight: true  },
+  { id: 'newField3',             hasWidth: true,  hasHeight: true  },
+  { id: 'newField4',             hasWidth: true,  hasHeight: true  },
+  { id: 'newField5',             hasWidth: true,  hasHeight: true  },
+  { id: 'newField6',             hasWidth: true,  hasHeight: true  },
+  { id: 'sigDate2',              hasWidth: true,  hasHeight: true  },
+
 ];
 
-const ALL_FIELDS = [...PAGE1_FIELDS, ...PAGE2_FIELDS, ...PAGE3_FIELDS];
+let PAGE4_FIELDS = [
+  { id: 'sigCanvas3',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField7',            hasWidth: true,  hasHeight: true  },
+  { id: 'newField8',            hasWidth: true,  hasHeight: true  },
+  { id: 'newField9',            hasWidth: true,  hasHeight: true  },
+  { id: 'newField10',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField11',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField12',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField13',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField14',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField15',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField16',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField17',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField18',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField19',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField20',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField21',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField22',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField23',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField24',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField25',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField26',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField27',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField28',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField29',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField30',           hasWidth: true,  hasHeight: true  },
+  { id: 'medicalConditions',           hasWidth: true,  hasHeight: true  },
+  { id: 'sigDate3',              hasWidth: true,  hasHeight: true  },
+  { id: 'Phone5TypeCluster',    hasWidth: false, hasHeight: false },
+  { id: 'Phone6TypeCluster',    hasWidth: false, hasHeight: false },
+  { id: 'Phone7TypeCluster',    hasWidth: false, hasHeight: false },
+  { id: 'Phone8TypeCluster',    hasWidth: false, hasHeight: false }
+];
+let PAGE5_FIELDS = [
+  { id: 'sigCanvas4',           hasWidth: true,  hasHeight: true  },
+  { id: 'sigCanvas5',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField31',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField32',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField33',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField34',           hasWidth: true,  hasHeight: true  },
+  { id: 'sigDate4',              hasWidth: true,  hasHeight: true  },
+  { id: 'sigDate5',              hasWidth: true,  hasHeight: true  },
+]
+
+let PAGE6_FIELDS = [
+  { id: 'newField35',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField36',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField37',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField38',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField39',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField40',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField41',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField42',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField43',           hasWidth: true,  hasHeight: true  },
+  { id: 'applicationsUsed',           hasWidth: true,  hasHeight: true  },
+  { id: 'studentLogin',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField44',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField45',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField46',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField47',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField48',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField49',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField50',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField51',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField52',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField53',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField54',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField55',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField56',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField57',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField58',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField59',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField60',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField61',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField62',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField63',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField64',           hasWidth: true,  hasHeight: true  },
+  { id: 'sigCanvas6',           hasWidth: true,  hasHeight: true  },
+  { id: 'sigDate6',           hasWidth: true,  hasHeight: true  },
+  { id: 'publicYesNo',           hasWidth: true,  hasHeight: true  },
+
+]
+
+let PAGE7_FIELDS = [
+  { id: 'newField65',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField66',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField67',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField68',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField69',           hasWidth: true,  hasHeight: true  },
+  { id: 'newField70',           hasWidth: true,  hasHeight: true  },
+  { id: 'sigCanvas7',           hasWidth: true,  hasHeight: true  },
+  { id: 'sigDate7',           hasWidth: true,  hasHeight: true  },
+  { id: 'foodAllergyYesNo',           hasWidth: true,  hasHeight: true  },
+  { id: 'foodAllergyIngestion1',           hasWidth: true,  hasHeight: true  },
+  { id: 'foodAllergyIngestion2',           hasWidth: true,  hasHeight: true  },
+  { id: 'foodAllergyIngestion3',           hasWidth: true,  hasHeight: true  },
+  { id: 'foodAllergyIngestion4',           hasWidth: true,  hasHeight: true  }  
+
+
+]
+
+
+const ALL_FIELDS = [...PAGE1_FIELDS, ...PAGE2_FIELDS, ...PAGE3_FIELDS, 
+                    ...PAGE4_FIELDS, ...PAGE5_FIELDS, ...PAGE6_FIELDS,
+                    ...PAGE7_FIELDS];
 
 // Track per-element drag handlers so we can remove them on exit
 const dragHandlers = new Map(); // id → { el, handler }
 const labelEls = new Map(); // id → label div element
+const resizeHandles = new Set(); // resize handle elements
 
 // ─────────────────────────────────────────────
 // Entry point (called from onclick in index.html)
@@ -96,6 +208,10 @@ function developerMode() {
 // Login modal
 // ─────────────────────────────────────────────
 function promptCredentials() {
+  if (DEV_BYPASS) {
+    enterDevMode();
+    return;
+  }
   const overlay = document.createElement('div');
   overlay.id = 'dev-login-modal';
   overlay.style.cssText = [
@@ -311,11 +427,6 @@ function createFieldLabels() {
   }
 }
 
-function removeFieldLabels() {
-  for (const label of labelEls.values()) label.remove();
-  labelEls.clear();
-}
-
 function applyPanelValues() {
   if (!selectedEl) return;
   const d = positionData.get(selectedEl.id);
@@ -390,6 +501,7 @@ function makeFieldsDraggable(el) {
 function makeResizable(el) {
   const handle = document.createElement('div');
   handle.className = 'dev-resize-handle';
+  resizeHandles.add(handle);
   el.appendChild(handle);
 
   handle.addEventListener('mousedown', function(e) {
@@ -449,17 +561,21 @@ function enterDevMode() {
 function exitDevMode() {
   devModeActive = false;
 
-  for (const { el, handler } of dragHandlers.values()) {
+  for (const [el, handler] of dragHandlers) {
     el.removeEventListener('mousedown', handler, true);
   }
   dragHandlers.clear();
 
-  document.querySelectorAll('.dev-resize-handle').forEach(h => h.remove());
+  for (const h of resizeHandles) h.remove();
+  resizeHandles.clear();
+
+  labelEls.forEach(label => label.remove());
+  labelEls.clear();
+  positionData.clear();
 
   if (selectedEl) { selectedEl.classList.remove('dev-selected'); selectedEl = null; }
 
-  const panel = document.getElementById('dev-panel');
-  if (panel) panel.remove();
+  document.getElementById('dev-panel')?.remove();
 
   document.body.classList.remove('dev-mode');
 
@@ -467,8 +583,6 @@ function exitDevMode() {
   if (btn) btn.textContent = 'Dev Mode';
 
   window.removeEventListener('beforeprint', exitDevMode);
-  removeFieldLabels();
-  positionData.clear();
 }
 
 // ─────────────────────────────────────────────
@@ -504,6 +618,50 @@ function generatePositionCSS() {
   }
   lines.push('');
   for (const field of PAGE3_FIELDS) {
+    const d = positionData.get(field.id);
+    if (!d) continue;
+    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
+    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
+    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
+    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
+    rule += ' }';
+    lines.push(rule);
+  }
+  lines.push('');
+  for (const field of PAGE4_FIELDS) {
+    const d = positionData.get(field.id);
+    if (!d) continue;
+    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
+    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
+    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
+    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
+    rule += ' }';
+    lines.push(rule);
+  }
+  lines.push('');
+  for (const field of PAGE5_FIELDS) {
+    const d = positionData.get(field.id);
+    if (!d) continue;
+    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
+    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
+    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
+    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
+    rule += ' }';
+    lines.push(rule);
+  }
+  lines.push('');
+  for (const field of PAGE6_FIELDS) {
+    const d = positionData.get(field.id);
+    if (!d) continue;
+    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
+    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
+    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
+    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
+    rule += ' }';
+    lines.push(rule);
+  }
+  lines.push('');
+  for (const field of PAGE7_FIELDS) {
     const d = positionData.get(field.id);
     if (!d) continue;
     let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
@@ -616,5 +774,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (location.protocol === 'file:') {
     const btn = document.getElementById('devModeBtn');
     if (btn) btn.style.display = 'none';
+  }
+  if (DEV_BYPASS) {
+    developerMode();
   }
 });

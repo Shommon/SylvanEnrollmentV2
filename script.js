@@ -97,6 +97,13 @@ const mm = String(today.getMonth() + 1).padStart(2, '0');
 const dd = String(today.getDate()).padStart(2, '0');
 const yyyy = today.getFullYear();
 document.getElementById('sigDate').value = mm + '/' + dd + '/' + yyyy;
+document.getElementById('sigDate2').value = mm + '/' + dd + '/' + yyyy;
+document.getElementById('sigDate3').value = mm + '/' + dd + '/' + yyyy;
+document.getElementById('sigDate4').value = mm + '/' + dd + '/' + yyyy;
+document.getElementById('sigDate5').value = mm + '/' + dd + '/' + yyyy;
+document.getElementById('sigDate6').value = mm + '/' + dd + '/' + yyyy;
+document.getElementById('sigDate7').value = mm + '/' + dd + '/' + yyyy;
+
 
 // Init canvases after images load
 window.addEventListener('load', () => {
