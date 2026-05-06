@@ -111,6 +111,7 @@ textarea.f {
   .pdf-page { box-shadow: none; width: 100%; max-width: 100%; page-break-after: always; }
   .f:focus { background: transparent; }
   .print-btn { display: none !important; }
+  .reset-btn { display: none !important; }
 }
 
 /* Signature canvas */
@@ -138,6 +139,24 @@ textarea.f {
   box-shadow: 0 3px 12px rgba(0,0,0,.3);
 }
 .print-btn:hover { background: #243f7a; }
+
+/* Reset button */
+.reset-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 190px;
+  z-index: 100;
+  background: #1a3a6b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.3);
+}
+.reset-btn:hover { background: #243f7a; }
 
 /* Dev Mode button
 .dev-btn {

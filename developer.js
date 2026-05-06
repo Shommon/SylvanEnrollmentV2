@@ -774,3 +774,35 @@ document.addEventListener('DOMContentLoaded', () => {
     developerMode();
   }
 });
+
+
+function resetFields() {
+  for (const field of ALL_FIELDS) {
+    const el = document.getElementById(field.id);
+    if (!el) continue;
+
+    if (el.tagName === 'INPUT') {
+      const type = el.type;
+      if (type === 'text' || type === 'email' || type === 'tel') {
+        el.value = '';
+      } else if (type === 'radio' || type === 'checkbox') {
+        el.checked = false;
+      }
+    } else if (el.tagName === 'TEXTAREA') {
+      el.value = '';
+    } else if (el.tagName === 'CANVAS') {
+      const ctx = el.getContext('2d');
+      if (ctx) ctx.clearRect(0, 0, el.width, el.height);
+    } else if (el.classList.contains('radio-cluster')) {
+      const inputs = el.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+      inputs.forEach(input => input.checked = false);
+    }
+  }
+}
+
+function confirmReset() {
+  if (confirm('Are you sure you want to reset all fields? This cannot be undone.')) {
+    resetFields();
+    showToast('All fields have been reset.');
+  }
+}
