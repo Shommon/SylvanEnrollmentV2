@@ -106,16 +106,12 @@ textarea.f {
 
 /* Print */
 @media print {
-  @page {
-    size: letter;
-    margin: 0;
-  }
   body { background: white; }
-  .scroll-wrap { padding: 0; gap: 0; display: block; }
-  .pdf-page { box-shadow: none; width: 100%; max-width: 100% !important; page-break-after: always; page-break-inside: avoid; overflow: hidden; }
+  .scroll-wrap { padding: 0; gap: 0; }
+  .pdf-page { box-shadow: none; width: 100%; max-width: 100%; page-break-after: always; }
   .f:focus { background: transparent; }
-  .print-btn, .reset-btn, .dev-btn, #dev-panel, .dev-resize-handle, .dev-label { display: none !important; }
-  .dev-selected { outline: none !important; background: transparent !important; }
+  .print-btn { display: none !important; }
+  .reset-btn { display: none !important; }
 }
 
 /* Signature canvas */
@@ -211,6 +207,11 @@ body.dev-mode .radio-cluster * { pointer-events: none; }
   z-index: 9998;
   line-height: 1.4;
   transform: translateY(-100%);
+}
+
+@media print {
+  .dev-btn, #dev-panel, .dev-resize-handle, .dev-label { display: none !important; }
+  .dev-selected { outline: none !important; background: transparent !important; }
 }
 
 /* ── Field positions ── */

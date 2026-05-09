@@ -105,36 +105,7 @@ document.getElementById('sigDate6').value = mm + '/' + dd + '/' + yyyy;
 document.getElementById('sigDate7').value = mm + '/' + dd + '/' + yyyy;
 
 
-// ── PDF Generation (jsPDF + html2canvas) ──
-async function handlePrint() {
-  const overlay = document.createElement('div');
-  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99999;display:flex;align-items:center;justify-content:center;color:#fff;font-family:Arial,sans-serif;font-size:20px';
-  overlay.textContent = 'Generating PDF…';
-  document.body.appendChild(overlay);
-  // Yield so overlay renders
-  await new Promise(r => setTimeout(r, 50));
-
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'letter' });
-  const pages = document.querySelectorAll('.pdf-page');
-
-  for (let i = 0; i < pages.length; i++) {
-    const canvas = await html2canvas(pages[i], {
-      scale: 2,
-      useCORS: true,
-      backgroundColor: '#ffffff',
-      logging: false,
-    });
-    const imgData = canvas.toDataURL('image/jpeg', 0.92);
-    if (i > 0) doc.addPage();
-    doc.addImage(imgData, 'JPEG', 0, 0, 8.5, 11);
-  }
-
-  overlay.remove();
-  doc.save('Sylvan-Enrollment.pdf');
-}
-
-// ── Init ──
+// Init canvases after images load
 window.addEventListener('load', () => {
   initSignaturePads();
   window.addEventListener('resize', () => {

@@ -110,11 +110,35 @@ textarea.f {
     size: letter;
     margin: 0;
   }
+
   body { background: white; }
+
   .scroll-wrap { padding: 0; gap: 0; display: block; }
-  .pdf-page { box-shadow: none; width: 100%; max-width: 100% !important; page-break-after: always; page-break-inside: avoid; overflow: hidden; }
+
+  .pdf-page {
+    box-shadow: none;
+    width: 100%;
+    max-width: 100% !important;
+    height: 100vh;
+    page-break-after: always;
+    page-break-inside: avoid;
+    overflow: hidden;
+  }
+
+  .pdf-page img.bg {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+  }
+
   .f:focus { background: transparent; }
-  .print-btn, .reset-btn, .dev-btn, #dev-panel, .dev-resize-handle, .dev-label { display: none !important; }
+  .print-btn, .reset-btn, .dev-btn,
+  #dev-panel, .dev-resize-handle, .dev-label { display: none !important; }
   .dev-selected { outline: none !important; background: transparent !important; }
 }
 
