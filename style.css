@@ -114,7 +114,7 @@ textarea.f {
   .scroll-wrap { padding: 0; gap: 0; display: block; }
   .pdf-page { box-shadow: none; width: 100%; max-width: 100% !important; page-break-after: always; page-break-inside: avoid; overflow: hidden; }
   .f:focus { background: transparent; }
-  .print-btn, .reset-btn, .dev-btn, #dev-panel, .dev-resize-handle, .dev-label { display: none !important; }
+  .print-btn, .reset-btn, .email-btn, .dev-btn, #dev-panel, .dev-resize-handle, .dev-label { display: none !important; }
   .dev-selected { outline: none !important; background: transparent !important; }
 }
 
@@ -148,7 +148,7 @@ textarea.f {
 .reset-btn {
   position: fixed;
   bottom: 20px;
-  right: 190px;
+  right: 340px;
   z-index: 100;
   background: #1a3a6b;
   color: white;
@@ -161,6 +161,24 @@ textarea.f {
   box-shadow: 0 3px 12px rgba(0,0,0,.3);
 }
 .reset-btn:hover { background: #243f7a; }
+
+/* Email button */
+.email-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 190px;
+  z-index: 100;
+  background: #1a7a3b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.3);
+}
+.email-btn:hover { background: #15803d; }
 
 /* Dev Mode button
 .dev-btn {

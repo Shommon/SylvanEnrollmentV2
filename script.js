@@ -134,6 +134,74 @@ async function handlePrint() {
   doc.save('Sylvan-Enrollment.pdf');
 }
 
+// ── Email PDF via Google Apps Script ──
+async function handleEmail() {
+  const subject = prompt('Enter subject (e.g. customer name):', 'Sylvan Enrollment Form');
+  if (subject === null) return;
+
+  const recipient = 'sdtai2@outlook.com';
+
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99999;display:flex;align-items:center;justify-content:center;color:#fff;font-family:Arial,sans-serif;font-size:20px';
+  overlay.textContent = 'Generating PDF…';
+  document.body.appendChild(overlay);
+  await new Promise(r => setTimeout(r, 50));
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'letter' });
+  const pages = document.querySelectorAll('.pdf-page');
+  for (let i = 0; i < pages.length; i++) {
+    overlay.textContent = 'Capturing page ' + (i + 1) + ' of ' + pages.length + '…';
+    const canvas = await html2canvas(pages[i], { scale: 1, useCORS: true, backgroundColor: '#ffffff', logging: false });
+    const imgData = canvas.toDataURL('image/jpeg', 0.7);
+    if (i > 0) doc.addPage();
+    doc.addImage(imgData, 'JPEG', 0, 0, 8.5, 11);
+  }
+
+  overlay.textContent = 'Encoding PDF…';
+  await new Promise(r => setTimeout(r, 30));
+
+  const pdfBlob = doc.output('blob');
+  const reader = new FileReader();
+  const base64 = await new Promise(resolve => {
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.readAsDataURL(pdfBlob);
+  });
+
+  overlay.textContent = 'Uploading (' + Math.round(base64.length / 1024) + ' KB)…';
+
+  const scriptUrl = 'https://script.google.com/macros/s/AKfycby3sAVqb96Ay-zVh9i7VhI1Mik8_HWBHOu-VObxjJjipUmhzlizXKhQA0GqwSv735h4/exec';
+
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 90000);
+
+    const res = await fetch(scriptUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify({
+        pdf: base64,
+        to: recipient,
+        subject: subject + ' - ' + new Date().toLocaleDateString(),
+        body: 'Attached is the Sylvan enrollment form.',
+        filename: 'Sylvan-Enrollment-' + Date.now() + '.pdf',
+      }),
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+
+    overlay.remove();
+    alert('Email sent successfully!');
+  } catch (err) {
+    overlay.remove();
+    if (err.name === 'AbortError') {
+      alert('Request timed out after 90s. The PDF may be too large or the Apps Script needs to be re-deployed. Try opening ' + scriptUrl + ' in your browser first to authorize it.');
+    } else {
+      alert('Failed to send: ' + err.message + '\n\nMake sure you have deployed the Apps Script and authorized it by opening the URL in your browser.');
+    }
+  }
+}
+
 // ── Init ──
 window.addEventListener('load', () => {
   initSignaturePads();
