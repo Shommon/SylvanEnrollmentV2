@@ -289,7 +289,7 @@ body.dev-mode .radio-cluster * { pointer-events: none; }
 #levelCluster           { left: 6.68%;  top: 14.18%; }
 #levelCluster label          { font-size:12px; margin-right:12px }
 #improvementCluster     { left: 6.8%;  top: 19.25%; }
-#improvementCluster label     { font-size:12px; margin-right:21px }
+#improvementCluster label     { font-size:12px; margin-right:12px }
 
 #improvOther            { left: 71.94%;  top: 18.29%;  width: 16%;  height: 2%; }
 #iepCluster             { left: 84.47%;  top: 23.13%; }
