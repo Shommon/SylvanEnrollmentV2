@@ -232,6 +232,37 @@ if (custNameSrc) {
   });
 }
 
+// ── Auto-fill customer2 name to other pages ──
+const cust2NameSrc = document.getElementById('cust2Name');
+if (cust2NameSrc) {
+  cust2NameSrc.addEventListener('input', () => {
+    document.querySelectorAll('[id*="cust2Name" i], #cust2NamePg4').forEach(el => {
+      if (el !== cust2NameSrc) el.value = cust2NameSrc.value;
+    });
+  });
+}
+
+
+// ── Auto-fill relationship name to other pages ──
+const relationshipSrc = document.getElementById('custRel');
+if (relationshipSrc) {
+  relationshipSrc.addEventListener('input', () => {
+    document.querySelectorAll('[id*="custRel" i], #custRelPg4').forEach(el => {
+      if (el !== relationshipSrc) el.value = relationshipSrc.value;
+    });
+  });
+}
+
+// ── Auto-fill relationship name to other pages ──
+const relationship2Src = document.getElementById('cust2Rel');
+if (relationship2Src) {
+  relationship2Src.addEventListener('input', () => {
+    document.querySelectorAll('[id*="cust2Rel" i], #cust2RelPg4').forEach(el => {
+      if (el !== relationship2Src) el.value = relationship2Src.value;
+    });
+  });
+}
+
 // ── Auto-fill student DOB to other pages ──
 const dobSrc = document.getElementById('dob');
 if (dobSrc) {
@@ -252,15 +283,47 @@ if (gradeSrc) {
   });
 }
 
-// ── Auto-fill Customer Address to other pages ──
+// ── Auto-fill Customer email to other pages ──
 const emailSrc = document.getElementById('email');
 if (emailSrc) {
   emailSrc.addEventListener('input', () => {
-    document.querySelectorAll('[id*="email" i], #custEmailPg4').forEach(el => {
+    document.querySelectorAll('[id*="email" i]:not(#email2):not(#cust2EmailPg4), #custEmailPg4').forEach(el => {
       if (el !== emailSrc) el.value = emailSrc.value;
     });
   });
 }
+
+// ── Auto-fill Customer email to other pages ──
+const email2Src = document.getElementById('email2');
+if (email2Src) {
+  email2Src.addEventListener('input', () => {
+    document.querySelectorAll('[id*="email2" i]:not(#email):not(#custEmailPg4), #cust2EmailPg4').forEach(el => {
+      if (el !== email2Src) el.value = email2Src.value;
+    });
+  });
+}
+
+// ── Auto-fill customer address to other pages ──
+const streetSrc = document.getElementById('street');
+const citySrc = document.getElementById('city');
+const stateSrc = document.getElementById('state');
+const zipSrc = document.getElementById('zip');
+let custAddress = '';
+
+function syncCustAddress() {
+  const parts = [streetSrc?.value || '', citySrc?.value || ''];
+  const stateZip = [stateSrc?.value || '', zipSrc?.value || ''].filter(Boolean).join(' ');
+  custAddress = parts.filter(Boolean).join(', ');
+  if (custAddress && stateZip) custAddress += ', ';
+  custAddress += stateZip;
+
+  const target = document.getElementById('custAddressPg4');
+  if (target) target.value = custAddress;
+}
+
+[streetSrc, citySrc, stateSrc, zipSrc].forEach(el => {
+  if (el) el.addEventListener('input', syncCustAddress);
+});
 
 // ── Init ──
 window.addEventListener('load', () => {
