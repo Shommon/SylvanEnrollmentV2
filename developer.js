@@ -424,6 +424,13 @@ function enterDevMode() {
 function exitDevMode() {
   devModeActive = false;
 
+  for (const [el] of dragHandlers) {
+    el.style.left = '';
+    el.style.top = '';
+    el.style.width = '';
+    el.style.height = '';
+  }
+
   for (const [el, handler] of dragHandlers) {
     el.removeEventListener('mousedown', handler, true);
   }

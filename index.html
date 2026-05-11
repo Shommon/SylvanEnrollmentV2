@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Welcome to Sylvan – Information & Objectives</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
 <body>
@@ -399,10 +399,13 @@
 
 </div><!-- /scroll-wrap -->
 
-<button class="reset-btn" onclick="confirmReset()">Reset All Fields</button>
-<button class="print-btn" onclick="handlePrint()">🖨 Print / Save PDF</button>
-<button class="email-btn" onclick="handleEmail()">✉ Email PDF</button>
-<button class="dev-btn" id="devModeBtn" onclick="developerMode()">Dev Mode</button>
+<div id="btn-container">
+  <button class="reset-btn" onclick="confirmReset()">Reset All Fields</button>
+  <button class="email-btn" onclick="handleEmail()">✉ Email PDF</button>  
+</div>
+
+<!-- <button class="print-btn" onclick="handlePrint()">🖨 Print / Save PDF</button> -->
+<!-- <button class="dev-btn" id="devModeBtn" onclick="developerMode()">Dev Mode</button> -->
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

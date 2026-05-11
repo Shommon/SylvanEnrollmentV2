@@ -114,7 +114,7 @@ textarea.f {
   .scroll-wrap { padding: 0; gap: 0; display: block; }
   .pdf-page { box-shadow: none; width: 100%; max-width: 100% !important; page-break-after: always; page-break-inside: avoid; overflow: hidden; }
   .f:focus { background: transparent; }
-  .print-btn, .reset-btn, .email-btn, .dev-btn, #dev-panel, .dev-resize-handle, .dev-label { display: none !important; }
+  #btn-container, #dev-panel, .dev-resize-handle, .dev-label { display: none !important; }
   .dev-selected { outline: none !important; background: transparent !important; }
 }
 
@@ -126,77 +126,6 @@ textarea.f {
   background: transparent;
 }
 
-/* Print button */
-.print-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100;
-  background: #1a3a6b;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 22px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 3px 12px rgba(0,0,0,.3);
-}
-.print-btn:hover { background: #243f7a; }
-
-/* Reset button */
-.reset-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 340px;
-  z-index: 100;
-  background: #1a3a6b;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 22px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 3px 12px rgba(0,0,0,.3);
-}
-.reset-btn:hover { background: #243f7a; }
-
-/* Email button */
-.email-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 190px;
-  z-index: 100;
-  background: #1a7a3b;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 22px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 3px 12px rgba(0,0,0,.3);
-}
-.email-btn:hover { background: #15803d; }
-
-/* Dev Mode button
-.dev-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 175px;
-  z-index: 100;
-  background: #555;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 22px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 3px 12px rgba(0,0,0,.3);
-}
-.dev-btn:hover { background: #333; }
 
 /* Dev-mode visual helpers */
 body.dev-mode .f,
@@ -323,7 +252,7 @@ body.dev-mode .radio-cluster * { pointer-events: none; }
 #custInitials5               { left: 22%; top: 64.2%; width: 5%; height: 2.2%; }
 #custInitials6               { left: 22%; top: 70.8%; width: 5%; height: 2.2%; }
 #sigDate2                { left: 79.86%;  top: 87.2%;  width: 12%;  height: 2%;}
-#page3text               {left: 7.5%; top: 22%; font-weight: bold; color: red};
+#page3text               {left: 7.5%; top: 22%; font-weight: bold; color: red}
 
 
 
@@ -500,3 +429,41 @@ body.show-id canvas[id^="sigCanvas"] {
   line-height: 1.4;
   transform: translateY(-100%);
 }
+
+/* Fixed button container (bottom-right) */
+#btn-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  gap: 10px;
+}
+
+/* Email button */
+.email-btn {
+  background: #1a7a3b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.3);
+}
+.email-btn:hover { background: #15803d; }
+
+/* Reset button */
+.reset-btn {
+  background: #1a3a6b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.3);
+}
+.reset-btn:hover { background: #243f7a; }
