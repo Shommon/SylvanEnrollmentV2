@@ -81,17 +81,19 @@ Click **✉ Email PDF** — generates the same PDF and sends it as an attachment
 
 ### Apps Script code (`Code.gs`)
 ```javascript
+var RECIPIENT = 'sdtai2@outlook.com'; // ← CHANGE THIS to your email
+
 function doPost(e) {
   const data = JSON.parse(e.postData.contents);
   const pdf = Utilities.base64Decode(data.pdf);
   const blob = Utilities.newBlob(pdf, 'application/pdf', data.filename);
-  GmailApp.sendEmail(data.to, data.subject, data.body, { attachments: [blob] });
+  GmailApp.sendEmail(RECIPIENT, data.subject, data.body, { attachments: [blob] });
   return ContentService.createTextOutput(JSON.stringify({ success: true }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 ```
 
-**Note:** The recipient email is currently hardcoded as `sdtai2@outlook.com` in `handleEmail()`. Update it in `script.js` to the actual recipient.
+**Note:** The recipient is now set server-side via `RECIPIENT` in the Apps Script project. The client no longer sends or knows the recipient address.
 
 ### Subject line prompt
 When **✉ Email PDF** is clicked, a prompt asks for a subject line (defaults to "Sylvan Enrollment Form"). If cancelled, no email is sent.

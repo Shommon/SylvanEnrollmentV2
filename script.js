@@ -139,8 +139,6 @@ async function handleEmail() {
   const subject = prompt('Enter subject (e.g. customer name):', 'Sylvan Enrollment Form');
   if (subject === null) return;
 
-  const recipient = 'sdtai2@outlook.com';
-
   const overlay = document.createElement('div');
   overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99999;display:flex;align-items:center;justify-content:center;color:#fff;font-family:Arial,sans-serif;font-size:20px';
   overlay.textContent = 'Generating PDF…';
@@ -181,7 +179,6 @@ async function handleEmail() {
       mode: 'no-cors',
       body: JSON.stringify({
         pdf: base64,
-        to: recipient,
         subject: subject + ' - ' + new Date().toLocaleDateString(),
         body: 'Attached is the Sylvan enrollment form.',
         filename: 'Sylvan-Enrollment-' + Date.now() + '.pdf',
