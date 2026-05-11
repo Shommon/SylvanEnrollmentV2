@@ -316,42 +316,42 @@ body.dev-mode .radio-cluster * { pointer-events: none; }
 
 /* Page 3 */
 #sigCanvas2             { left: 24.67%;  top: 82.26%;  width: 49%;  height: 7%; outline: dashed grey 0.5px;}
-#newField               { left: 22%; top: 27.3%; width: 5%; height: 2.2%; }
-#newField2               { left: 22%; top: 37.5%; width: 5%; height: 2.2%; }
-#newField3               { left: 22%; top: 46.0%; width: 5%; height: 2.2%; }
-#newField4               { left: 22%; top: 56.2%; width: 5%; height: 2.2%; }
-#newField5               { left: 22%; top: 64.2%; width: 5%; height: 2.2%; }
-#newField6               { left: 22%; top: 70.8%; width: 5%; height: 2.2%; }
+#custInitials1              { left: 22%; top: 27.3%; width: 5%; height: 2.2%; }
+#custInitials2              { left: 22%; top: 37.5%; width: 5%; height: 2.2%; }
+#custInitials3               { left: 22%; top: 46.0%; width: 5%; height: 2.2%; }
+#custInitials4               { left: 22%; top: 56.2%; width: 5%; height: 2.2%; }
+#custInitials5               { left: 22%; top: 64.2%; width: 5%; height: 2.2%; }
+#custInitials6               { left: 22%; top: 70.8%; width: 5%; height: 2.2%; }
 #sigDate2                { left: 79.86%;  top: 87.2%;  width: 12%;  height: 2%;}
 
 
 
 /* Page 4 */
 #sigCanvas3             { left: 20.17%;  top: 80%;  width: 52.8%;  height: 8.2%; outline: dashed grey 0.5px;}
-#newField7               { left: 16%; top: 19.3%; width: 28.4%; height: 2.2%; }
-#newField8               { left: 55.6%; top: 19.3%; width: 35.6%; height: 2.2%; }
-#newField9               { left: 15%; top: 22.5%; width: 29.6%; height: 2.2%; }
-#newField10               { left: 63.76%; top: 22.5%; width: 27.6%; height: 2.2%; }
-#newField11               { left: 16.94%; top: 25.6%; width: 27.3%; height: 2.2%; }
-#newField12               { left: 62.82%; top: 25.61%; width: 28.6%; height: 2.2%; }
-#newField13               { left: 18.7%; top: 28.89%; width: 72.7%; height: 2.2%; }
-#newField14               { left: 18.7%; top: 28.89%; width: 72.7%; height: 2.2%; }
-#newField15               { left: 18.7%; top: 28.89%; width: 72.7%; height: 2.2%; }
-#newField16               { left: 16.9%; top: 32.04%; width: 74.2%; height: 2.2%; }
-#newField17               { left: 18.7%; top: 35.12%; width: 24.4%; height: 2.2%; }
-#newField18               { left: 58.6%; top: 35.1%; width: 32.7%; height: 2.2%; }
-#newField19               { left: 18.83%; top: 39.61%; width: 25.5%; height: 2.2%; }
-#newField20               { left: 63.02%; top: 39.5%; width: 28.2%; height: 2.2%; }
-#newField21               { left: 19.81%; top: 42.78%; width: 71.5%; height: 2.2%; }
-#newField22               { left: 18.99%; top: 45.82%; width: 72.3%; height: 2.2%; }
-#newField23               { left: 19.9%; top: 49.1%; width: 23.7%; height: 2.2%; }
-#newField24               { left: 59.07%; top: 49%; width: 32.2%; height: 2.2%; }
-#newField25               { left: 22.41%; top: 54.36%; width: 20.9%; height: 2.2%; }
-#newField26               { left: 51.08%; top: 54.36%; width: 40.2%; height: 2.2%; }
-#newField27               { left: 11.4%; top: 57.52%; width: 35%; height: 2.2%; }
-#newField28               { left: 47.87%; top: 57.52%; width: 20%; height: 2.2%; }
-#newField29               { left: 69.75%; top: 57.52%; width: 9%; height: 2.2%; }
-#newField30               { left: 80.46%; top: 57.52%; width: 10.9%; height: 2.2%; }
+#studentNamePg4               { left: 16%; top: 19.3%; width: 28.4%; height: 2.2%; }
+#studentAgePg4               { left: 55.6%; top: 19.3%; width: 35.6%; height: 2.2%; }
+#studentDOBPg4               { left: 15%; top: 22.5%; width: 29.6%; height: 2.2%; }
+#studentGradePg4               { left: 63.76%; top: 22.5%; width: 27.6%; height: 2.2%; }
+#custNamePg4               { left: 16.94%; top: 25.6%; width: 27.3%; height: 2.2%; }
+#custRelPg4               { left: 62.82%; top: 25.61%; width: 28.6%; height: 2.2%; }
+#custAddressPg4               { left: 18.82%; top: 28.89%; width: 72.7%; height: 2.2%; }
+/* #newField14               { left: 18.7%; top: 28.89%; width: 72.7%; height: 2.2%; } */
+/* #newField15               { left: 18.7%; top: 28.89%; width: 72.7%; height: 2.2%; } */
+#custEmailPg4               { left: 16.9%; top: 32.04%; width: 74.2%; height: 2.2%; }
+#custOccPg4               { left: 18.7%; top: 35.12%; width: 24.4%; height: 2.2%; }
+#custAltPhonePg4               { left: 58.6%; top: 35.1%; width: 32.7%; height: 2.2%; }
+#cust2NamePg4               { left: 18.83%; top: 39.61%; width: 25.5%; height: 2.2%; }
+#cust2RelPg4               { left: 63.02%; top: 39.5%; width: 28.2%; height: 2.2%; }
+#cust2AddressPg4               { left: 19.81%; top: 42.78%; width: 71.5%; height: 2.2%; }
+#cust2EmailPg4               { left: 18.99%; top: 45.82%; width: 72.3%; height: 2.2%; }
+#emergency2PhonePg4               { left: 19.9%; top: 49.1%; width: 23.7%; height: 2.2%; }
+#cust2AltPhonePg4               { left: 59.07%; top: 49%; width: 32.2%; height: 2.2%; }
+#primaryPhysician               { left: 22.41%; top: 54.36%; width: 20.9%; height: 2.2%; }
+#physicianPhone               { left: 51.08%; top: 54.36%; width: 40.2%; height: 2.2%; }
+#physicianAddress               { left: 11.4%; top: 57.52%; width: 35%; height: 2.2%; }
+#physicianCity               { left: 47.87%; top: 57.52%; width: 20%; height: 2.2%; }
+#physicianState               { left: 69.75%; top: 57.52%; width: 9%; height: 2.2%; }
+#physicianZip               { left: 80.46%; top: 57.52%; width: 10.9%; height: 2.2%; }
 
 #medicalConditions        { left: 5.02%; top: 64.19%; width: 86.3%; height: 8%; }
 #sigDate3                { left: 77.29%;  top: 86.09%;  width: 14.2%;  height: 2.2%;}
@@ -378,25 +378,25 @@ body.dev-mode .radio-cluster * { pointer-events: none; }
 #sigCanvas5             { left: 20.23%;  top: 87.27%;  width: 52.9%;  height: 8%; outline: dashed grey 0.5px;}
 #sigDate4                { left: 80%;  top: 70.36%;  width: 14%;  height: 1.45;}
 #sigDate5                { left: 79.41%;  top: 93.73%;  width: 14%;  height: 1.45;}
-#newField31               { left: 17.53%; top: 55.64%; width: 55.8%; height: 2.2%; }
-#newField32               { left: 15.06%; top: 59.91%; width: 58.3%; height: 2.2%; }
-#newField33               { left: 24.47%; top: 78.36%; width: 56.7%; height: 2.2%; }
-#newField34               { left: 23.29%; top: 82%; width: 57.8%; height: 2.2%; }
+#pubAgreePrintedName               { left: 17.53%; top: 55.64%; width: 55.8%; height: 2.2%; }
+#pubAgreePhone               { left: 15.06%; top: 59.91%; width: 58.3%; height: 2.2%; }
+#pubAgreeMinorPrintedName               { left: 24.47%; top: 78.36%; width: 56.7%; height: 2.2%; }
+#pubAgreeMinorChildName               { left: 23.29%; top: 82%; width: 57.8%; height: 2.2%; }
 
 
 /* Page 5 */
 #sigCanvas6             { left: 23.41%;  top: 91.46%;  width: 49.2%;  height: 3.5%; outline: dashed grey 0.5px;}
 #studentLogin           { left: 48.12%;  top: 65.55%;  width: 43.9%;  height: 5.31%;}
 #applicationsUsed       { left: 6.12%;  top: 65.64%;  width: 38.6%;  height: 5.31%;}
-#newField35               { left: 17.17%; top: 24.82%; width: 28.4%; height: 2.2%; }
-#newField36               { left: 60.17%; top: 24.82%; width: 33%; height: 2.2%; }
-#newField37               { left: 11.7%; top: 55.09%; width: 34%; height: 2.2%; }
-#newField38               { left: 53.41%; top: 55.09%; width: 40.3%; height: 2.2%; }
-#newField39               { left: 12.82%; top: 57.4%; width: 80.9%; height: 1.8%; }
-#newField40               { left: 13.06%; top: 59.31%; width: 32.1%; height: 1.8%; }
-#newField41               { left: 56.41%; top: 59.31%; width: 37.3%; height: 1.8%; }
-#newField42               { left: 18.06%; top: 61.22%; width: 27.4%; height: 1.8%; }
-#newField43               { left: 61.82%; top: 61.22%; width: 31.4%; height: 1.8%; }
+#authExchangeStudentName               { left: 17.17%; top: 24.82%; width: 28.4%; height: 2.2%; }
+#authExchangeCustName               { left: 60.17%; top: 24.82%; width: 33%; height: 2.2%; }
+#authExchangeSchool               { left: 11.7%; top: 55.09%; width: 34%; height: 2.2%; }
+#authExchangeSchoolPhone               { left: 53.41%; top: 55.09%; width: 40.3%; height: 2.2%; }
+#authExchangeSchoolAddress               { left: 12.82%; top: 57.4%; width: 80.9%; height: 1.8%; }
+#authExchangeSchoolPrincipal               { left: 13.06%; top: 59.31%; width: 32.1%; height: 1.8%; }
+#authExchangeSchoolCounselor               { left: 56.41%; top: 59.31%; width: 37.3%; height: 1.8%; }
+#authExchangeSchoolWebsite               { left: 18.06%; top: 61.22%; width: 27.4%; height: 1.8%; }
+#authExchangeSchoolLogin               { left: 61.82%; top: 61.22%; width: 31.4%; height: 1.8%; }
 
 #newField44               { left: 5.94%; top: 74.77%; width: 22%; height: 2.2%; }
 #newField45               { left: 5.94%; top: 77.13%; width: 22%; height: 2.2%; }
@@ -447,8 +447,8 @@ body.dev-mode .radio-cluster * { pointer-events: none; }
 #sigCanvas7             { left: 28.59%;  top: 85.63%;  width: 35%;  height: 5.5%; outline: dashed grey 0.5px}
 #sigDate7                 { left: 72%;  top: 88.99%;  width: 12.9%;  height: 2.2%;}
 
-#newField65 { left: 27.42%; top: 56.59%; width: 30.2%; height: 2.2%; }
-#newField66 { left: 34.01%; top: 59.39%; width: 28.7%; height: 2.2%; }
+#studentNamePg7 { left: 27.42%; top: 56.59%; width: 30.2%; height: 2.2%; }
+#custNamePg7 { left: 34.01%; top: 59.39%; width: 28.7%; height: 2.2%; }
 #newField67 { left: 20.3%; top: 70.28%; width: 27.7%; height: 2.2%; }
 #newField68 { left: 20.3%; top: 73.89%; width: 27.7%; height: 2.2%; }
 #newField69 { left: 20.3%; top: 77.41%; width: 27.7%; height: 2.2%; }
@@ -476,3 +476,26 @@ body.dev-mode .radio-cluster * { pointer-events: none; }
 #foodAllergyIngestion4  { left: 56%;  top: 80.91%;  width: auto;  height: 2.27%;}
 #foodAllergyIngestion4 label { font-size: 18px; margin-right: 29px; gap: 14px;}
 #foodAllergyIngestion4 input { width: 20px; height: 20px}
+
+
+/* Show ID mode */
+body.show-id .f,
+body.show-id .radio-cluster,
+body.show-id canvas[id^="sigCanvas"] {
+  outline: 1.5px dashed #1a3a6b !important;
+}
+.id-label {
+  position: absolute;
+  background: #1a3a6b;
+  color: #fff;
+  font-size: 9px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 2px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 9998;
+  line-height: 1.4;
+  transform: translateY(-100%);
+}

@@ -202,6 +202,66 @@ async function handleEmail() {
   }
 }
 
+// ── Auto-fill student name to other pages ──
+const studentNameSrc = document.getElementById('studentName');
+if (studentNameSrc) {
+  studentNameSrc.addEventListener('input', () => {
+    document.querySelectorAll('[id*="studentName" i]').forEach(el => {
+      if (el.id !== 'studentName') el.value = studentNameSrc.value;
+    });
+  });
+}
+
+// ── Auto-fill student age to other pages ──
+const ageSrc = document.getElementById('age');
+if (ageSrc) {
+  ageSrc.addEventListener('input', () => {
+    document.querySelectorAll('input[id*="Age" i]').forEach(el => {
+      if (el !== ageSrc) el.value = ageSrc.value;
+    });
+  });
+}
+
+// ── Auto-fill customer name to other pages ──
+const custNameSrc = document.getElementById('custName');
+if (custNameSrc) {
+  custNameSrc.addEventListener('input', () => {
+    document.querySelectorAll('[id*="custName" i], #pubAgreePrintedName').forEach(el => {
+      if (el !== custNameSrc) el.value = custNameSrc.value;
+    });
+  });
+}
+
+// ── Auto-fill student DOB to other pages ──
+const dobSrc = document.getElementById('dob');
+if (dobSrc) {
+  dobSrc.addEventListener('input', () => {
+    document.querySelectorAll('input[id*="DOB" i]').forEach(el => {
+      if (el !== dobSrc) el.value = dobSrc.value;
+    });
+  });3
+}
+
+// ── Auto-fill Grade at School to other pages ──
+const gradeSrc = document.getElementById('grade');
+if (gradeSrc) {
+  gradeSrc.addEventListener('input', () => {
+    document.querySelectorAll('[id*="grade" i], #studentGradePg4').forEach(el => {
+      if (el !== gradeSrc) el.value = gradeSrc.value;
+    });
+  });
+}
+
+// ── Auto-fill Customer Address to other pages ──
+const emailSrc = document.getElementById('email');
+if (emailSrc) {
+  emailSrc.addEventListener('input', () => {
+    document.querySelectorAll('[id*="email" i], #custEmailPg4').forEach(el => {
+      if (el !== emailSrc) el.value = emailSrc.value;
+    });
+  });
+}
+
 // ── Init ──
 window.addEventListener('load', () => {
   initSignaturePads();

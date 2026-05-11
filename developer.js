@@ -5,183 +5,19 @@ let selectedEl = null;
 let dragState = null, resizeState = null;
 const positionData = new Map(); // id → {left, top, width, height, hasWidth, hasHeight}
 
-const PAGE1_FIELDS = [
-  { id: 'studentName',          hasWidth: true,  hasHeight: true  },
-  { id: 'age',                  hasWidth: true,  hasHeight: true  },
-  { id: 'dob',                  hasWidth: true,  hasHeight: true  },
-  { id: 'school',               hasWidth: true,  hasHeight: true  },
-  { id: 'grade',                hasWidth: true,  hasHeight: true  },
-  { id: 'custName',             hasWidth: true,  hasHeight: true  },
-  { id: 'custRel',              hasWidth: true,  hasHeight: true  },
-  { id: 'street',               hasWidth: true,  hasHeight: true  },
-  { id: 'city',                 hasWidth: true,  hasHeight: true  },
-  { id: 'state',                hasWidth: true,  hasHeight: true  },
-  { id: 'zip',                  hasWidth: true,  hasHeight: true  },
-  { id: 'email',                hasWidth: true,  hasHeight: true  },
-  { id: 'occ',                  hasWidth: true,  hasHeight: true  },
-  { id: 'phone',                hasWidth: true,  hasHeight: true  },
-  { id: 'phoneTypeCluster',     hasWidth: false, hasHeight: false },
-  { id: 'altPhone',             hasWidth: true,  hasHeight: true  },
-  { id: 'altPhoneTypeCluster',  hasWidth: false, hasHeight: false },
-  { id: 'prefContactCluster',   hasWidth: false, hasHeight: false },
-  { id: 'prefOther',            hasWidth: true,  hasHeight: true  },
-  { id: 'cust2Name',            hasWidth: true,  hasHeight: true  },
-  { id: 'cust2Rel',             hasWidth: true,  hasHeight: true  },
-  { id: 'email2',               hasWidth: true,  hasHeight: true  },
-  { id: 'occ2',                 hasWidth: true,  hasHeight: true  },
-  { id: 'phone2',               hasWidth: true,  hasHeight: true  },
-  { id: 'phone2TypeCluster',    hasWidth: false, hasHeight: false },
-  { id: 'altPhone2',            hasWidth: true,  hasHeight: true  },
-  { id: 'altPhone2TypeCluster', hasWidth: false, hasHeight: false },
-  { id: 'prefContact2Cluster',  hasWidth: false, hasHeight: false },
-  { id: 'prefOther2',           hasWidth: true,  hasHeight: true  },
-  { id: 'siblings1',            hasWidth: true,  hasHeight: true  },
-  { id: 'siblings2',            hasWidth: true,  hasHeight: true  },
-  { id: 'q1',                  hasWidth: true,  hasHeight: true  },
-  { id: 'prevSylvanCluster',    hasWidth: false, hasHeight: false },
-  { id: 'q3',                   hasWidth: true,  hasHeight: true  },
-  { id: 'q4a',                  hasWidth: true,  hasHeight: true  },
-  { id: 'q4b',                  hasWidth: true,  hasHeight: true  },
-];
+function getPageFields(num) {
+  const overlay = document.querySelector(`#page${num} .overlay`);
+  if (!overlay) return [];
+  return [...overlay.querySelectorAll('[id]')].map(el => ({
+    id: el.id,
+    hasWidth: !el.classList.contains('radio-cluster'),
+    hasHeight: !el.classList.contains('radio-cluster')
+  }));
+}
 
-const PAGE2_FIELDS = [
-  { id: 'levelCluster',         hasWidth: false, hasHeight: false },
-  { id: 'improvementCluster',   hasWidth: false, hasHeight: false },
-  { id: 'improvOther',          hasWidth: true,  hasHeight: true  },
-  { id: 'iepCluster',           hasWidth: false, hasHeight: false },
-  { id: 'q8',                  hasWidth: true,  hasHeight: true  },
-  { id: 'q10',                  hasWidth: true,  hasHeight: true  },
-  { id: 'supportPlanCluster',   hasWidth: false, hasHeight: false },
-  { id: 'q10a',                 hasWidth: true,  hasHeight: true  },
-  { id: 'q10b',                 hasWidth: true,  hasHeight: true  },
-  { id: 'q10c',                 hasWidth: true,  hasHeight: true  },
-  { id: 'q11a',                 hasWidth: true,  hasHeight: true  },
-  { id: 'q11b',                 hasWidth: true,  hasHeight: true  },
-  { id: 'q12',                  hasWidth: true,  hasHeight: true  },
-  { id: 'daysCluster',          hasWidth: false, hasHeight: false },
-  { id: 'convTimeCluster',      hasWidth: false, hasHeight: false },
-  { id: 'paymentCluster',       hasWidth: false, hasHeight: false },
-  { id: 'sigCanvas',            hasWidth: true,  hasHeight: true  },
-  { id: 'sigDate',              hasWidth: true,  hasHeight: true  },
-];
-
-let PAGE3_FIELDS = [
-  { id: 'sigCanvas2',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField',             hasWidth: true,  hasHeight: true  },
-  { id: 'newField2',             hasWidth: true,  hasHeight: true  },
-  { id: 'newField3',             hasWidth: true,  hasHeight: true  },
-  { id: 'newField4',             hasWidth: true,  hasHeight: true  },
-  { id: 'newField5',             hasWidth: true,  hasHeight: true  },
-  { id: 'newField6',             hasWidth: true,  hasHeight: true  },
-  { id: 'sigDate2',              hasWidth: true,  hasHeight: true  },
-
-];
-
-let PAGE4_FIELDS = [
-  { id: 'sigCanvas3',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField7',            hasWidth: true,  hasHeight: true  },
-  { id: 'newField8',            hasWidth: true,  hasHeight: true  },
-  { id: 'newField9',            hasWidth: true,  hasHeight: true  },
-  { id: 'newField10',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField11',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField12',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField13',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField14',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField15',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField16',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField17',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField18',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField19',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField20',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField21',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField22',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField23',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField24',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField25',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField26',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField27',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField28',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField29',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField30',           hasWidth: true,  hasHeight: true  },
-  { id: 'medicalConditions',           hasWidth: true,  hasHeight: true  },
-  { id: 'sigDate3',              hasWidth: true,  hasHeight: true  },
-  { id: 'Phone5TypeCluster',    hasWidth: false, hasHeight: false },
-  { id: 'Phone6TypeCluster',    hasWidth: false, hasHeight: false },
-  { id: 'Phone7TypeCluster',    hasWidth: false, hasHeight: false },
-  { id: 'Phone8TypeCluster',    hasWidth: false, hasHeight: false }
-];
-let PAGE5_FIELDS = [
-  { id: 'sigCanvas4',           hasWidth: true,  hasHeight: true  },
-  { id: 'sigCanvas5',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField31',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField32',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField33',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField34',           hasWidth: true,  hasHeight: true  },
-  { id: 'sigDate4',              hasWidth: true,  hasHeight: true  },
-  { id: 'sigDate5',              hasWidth: true,  hasHeight: true  },
-]
-
-let PAGE6_FIELDS = [
-  { id: 'newField35',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField36',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField37',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField38',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField39',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField40',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField41',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField42',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField43',           hasWidth: true,  hasHeight: true  },
-  { id: 'applicationsUsed',           hasWidth: true,  hasHeight: true  },
-  { id: 'studentLogin',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField44',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField45',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField46',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField47',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField48',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField49',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField50',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField51',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField52',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField53',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField54',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField55',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField56',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField57',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField58',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField59',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField60',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField61',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField62',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField63',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField64',           hasWidth: true,  hasHeight: true  },
-  { id: 'sigCanvas6',           hasWidth: true,  hasHeight: true  },
-  { id: 'sigDate6',           hasWidth: true,  hasHeight: true  },
-  { id: 'publicYesNo',           hasWidth: true,  hasHeight: true  },
-
-]
-
-let PAGE7_FIELDS = [
-  { id: 'newField65',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField66',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField67',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField68',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField69',           hasWidth: true,  hasHeight: true  },
-  { id: 'newField70',           hasWidth: true,  hasHeight: true  },
-  { id: 'sigCanvas7',           hasWidth: true,  hasHeight: true  },
-  { id: 'sigDate7',           hasWidth: true,  hasHeight: true  },
-  { id: 'foodAllergyYesNo',           hasWidth: true,  hasHeight: true  },
-  { id: 'foodAllergyIngestion1',           hasWidth: true,  hasHeight: true  },
-  { id: 'foodAllergyIngestion2',           hasWidth: true,  hasHeight: true  },
-  { id: 'foodAllergyIngestion3',           hasWidth: true,  hasHeight: true  },
-  { id: 'foodAllergyIngestion4',           hasWidth: true,  hasHeight: true  }  
-
-
-]
-
-
-const ALL_FIELDS = [...PAGE1_FIELDS, ...PAGE2_FIELDS, ...PAGE3_FIELDS, 
-                    ...PAGE4_FIELDS, ...PAGE5_FIELDS, ...PAGE6_FIELDS,
-                    ...PAGE7_FIELDS];
+function getAllFields() {
+  return [1,2,3,4,5,6,7].flatMap(getPageFields);
+}
 
 // Track per-element drag handlers so we can remove them on exit
 const dragHandlers = new Map(); // id → { el, handler }
@@ -281,7 +117,7 @@ function getComputedPercentages(el) {
 
 function buildPositionData() {
   positionData.clear();
-  for (const field of ALL_FIELDS) {
+  for (const field of getAllFields()) {
     const el = document.getElementById(field.id);
     if (!el) continue;
     const pct = getComputedPercentages(el);
@@ -408,7 +244,7 @@ function positionLabel(id) {
 }
 
 function createFieldLabels() {
-  for (const field of ALL_FIELDS) {
+  for (const field of getAllFields()) {
     const el = document.getElementById(field.id);
     if (!el) continue;
     const overlay = el.closest('.overlay');
@@ -420,6 +256,38 @@ function createFieldLabels() {
     labelEls.set(field.id, label);
     positionLabel(field.id);
   }
+}
+
+// ── Show ID Toggle ──
+let showIDActive = false;
+const idLabels = new Map();
+
+function showID() {
+  if (showIDActive) {
+    idLabels.forEach(label => label.remove());
+    idLabels.clear();
+    document.body.classList.remove('show-id');
+    showIDActive = false;
+    return;
+  }
+
+  for (const field of getAllFields()) {
+    const el = document.getElementById(field.id);
+    if (!el) continue;
+    const overlay = el.closest('.overlay');
+    if (!overlay) continue;
+    const label = document.createElement('div');
+    label.className = 'id-label';
+    label.textContent = field.id;
+    const s = getComputedStyle(el);
+    label.style.left = s.left;
+    label.style.top = s.top;
+    overlay.appendChild(label);
+    idLabels.set(field.id, label);
+  }
+
+  document.body.classList.add('show-id');
+  showIDActive = true;
 }
 
 function applyPanelValues() {
@@ -539,7 +407,7 @@ function enterDevMode() {
   buildPositionData();
   createFieldLabels();
 
-  for (const field of ALL_FIELDS) {
+  for (const field of getAllFields()) {
     const el = document.getElementById(field.id);
     if (!el) continue;
     makeFieldsDraggable(el);
@@ -588,85 +456,20 @@ function fmt(n) {
 }
 
 function generatePositionCSS() {
-  const lines = ['/* Page 1 */'];
-  for (const field of PAGE1_FIELDS) {
-    const d = positionData.get(field.id);
-    if (!d) continue;
-    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
-    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
-    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
-    rule += ' }';
-    lines.push(rule);
+  const lines = [];
+  for (let p = 1; p <= 7; p++) {
+    lines.push(`/* Page ${p} */`);
+    for (const field of getPageFields(p)) {
+      const d = positionData.get(field.id);
+      if (!d) continue;
+      let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
+      if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
+      if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
+      rule += ' }';
+      lines.push(rule);
+    }
+    lines.push('');
   }
-  lines.push('');
-  lines.push('/* Page 2 */');
-  for (const field of PAGE2_FIELDS) {
-    const d = positionData.get(field.id);
-    if (!d) continue;
-    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
-    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
-    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
-    rule += ' }';
-    lines.push(rule);
-  }
-  lines.push('');
-  for (const field of PAGE3_FIELDS) {
-    const d = positionData.get(field.id);
-    if (!d) continue;
-    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
-    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
-    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
-    rule += ' }';
-    lines.push(rule);
-  }
-  lines.push('');
-  for (const field of PAGE4_FIELDS) {
-    const d = positionData.get(field.id);
-    if (!d) continue;
-    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
-    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
-    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
-    rule += ' }';
-    lines.push(rule);
-  }
-  lines.push('');
-  for (const field of PAGE5_FIELDS) {
-    const d = positionData.get(field.id);
-    if (!d) continue;
-    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
-    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
-    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
-    rule += ' }';
-    lines.push(rule);
-  }
-  lines.push('');
-  for (const field of PAGE6_FIELDS) {
-    const d = positionData.get(field.id);
-    if (!d) continue;
-    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
-    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
-    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
-    rule += ' }';
-    lines.push(rule);
-  }
-  lines.push('');
-  for (const field of PAGE7_FIELDS) {
-    const d = positionData.get(field.id);
-    if (!d) continue;
-    let rule = `#${field.id.padEnd(22)} { left: ${fmt(d.left)}%;  top: ${fmt(d.top)}%;`;
-    if (field.hasWidth)  rule += `  width: ${fmt(d.width)}%;`;
-    if (field.hasHeight) rule += `  height: ${fmt(d.height)}%;`;
-    if (field.id === 'sigCanvas' || field.id === 'sigCanvas2') rule += `  border-bottom: 1.5px solid #999;`;
-    rule += ' }';
-    lines.push(rule);
-  }
-  lines.push('');
   return lines.join('\n');
 }
 
@@ -770,14 +573,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('devModeBtn');
     if (btn) btn.style.display = 'none';
   }
-  if (DEV_BYPASS) {
-    developerMode();
-  }
+  // if (DEV_BYPASS) {
+  //   developerMode();
+  // }
 });
 
 
 function resetFields() {
-  for (const field of ALL_FIELDS) {
+  for (const field of getAllFields()) {
     const el = document.getElementById(field.id);
     if (!el) continue;
 
@@ -804,5 +607,14 @@ function confirmReset() {
   if (confirm('Are you sure you want to reset all fields? This cannot be undone.')) {
     resetFields();
     showToast('All fields have been reset.');
+  }
+}
+
+function logPageFields() {
+  for (let p = 1; p <= 7; p++) {
+    console.log(`// Page ${p}`);
+    getPageFields(p).forEach(f =>
+      console.log(`  { id: '${f.id}', hasWidth: ${f.hasWidth}, hasHeight: ${f.hasHeight} },`)
+    );
   }
 }
