@@ -323,6 +323,7 @@ body.dev-mode .radio-cluster * { pointer-events: none; }
 #custInitials5               { left: 22%; top: 64.2%; width: 5%; height: 2.2%; }
 #custInitials6               { left: 22%; top: 70.8%; width: 5%; height: 2.2%; }
 #sigDate2                { left: 79.86%;  top: 87.2%;  width: 12%;  height: 2%;}
+#page3text               {left: 7.5%; top: 22%; font-weight: bold; color: red};
 
 
 
