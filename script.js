@@ -76,6 +76,7 @@ class SignaturePad {
     this.canvas.addEventListener('touchstart', e => this.onMouseDown(e), { passive: false });
     this.canvas.addEventListener('touchmove', e => this.onMouseMove(e), { passive: false });
     this.canvas.addEventListener('touchend', () => this.onMouseUp());
+    this.canvas.addEventListener('touchcancel', () => this.onMouseUp());
   }
 }
 
@@ -326,6 +327,10 @@ function syncCustAddress() {
 window.addEventListener('load', () => {
   initSignaturePads();
   window.addEventListener('resize', () => {
-    signaturePads.forEach(pad => pad.setup());
+    signaturePads.forEach(pad => {
+      const imageData = pad.ctx.getImageData(0, 0, pad.canvas.width, pad.canvas.height);
+      pad.setup();
+      pad.ctx.putImageData(imageData, 0, 0);
+    });
   });
 });
